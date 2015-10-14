@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import l.anchorer.org.lapplication.R;
+import org.anchorer.l.R;
 
 /**
  * Created by Anchorer/duruixue on 2015/9/29.

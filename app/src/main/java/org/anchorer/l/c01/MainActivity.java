@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import l.anchorer.org.lapplication.R;
+import org.anchorer.l.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="l.anchorer.org.lapplication">
+          package="org.anchorer.l">
 
     <uses-permission android:name="org.anchorer.l.c02.aidl.ACCESS_SERVICE"/>
     <uses-permission android:name="org.anchorer.l.PROVIDER"/>
@@ -39,11 +39,20 @@
             android:permission="org.anchorer.l.PROVIDER"
             android:process=":remote"/>
         <activity android:name="org.anchorer.l.c02.provider.ProviderActivity">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>-->
+        </activity>
+
+        <!-- Custom View -->
+        <activity android:name="org.anchorer.l.c04.CustomViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
