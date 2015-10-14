@@ -12,6 +12,7 @@ import android.view.View;
  */
 public class CircleView extends View {
 
+    private final int DEFAULT_SIZE = 200;
     private final int mColor = Color.RED;
     private Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
@@ -38,10 +39,32 @@ public class CircleView extends View {
     }
 
     @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+
+        if (widthMode == MeasureSpec.AT_MOST && heightMode == MeasureSpec.AT_MOST) {
+            setMeasuredDimension(DEFAULT_SIZE, DEFAULT_SIZE);
+        } else if (widthMode == MeasureSpec.AT_MOST) {
+            setMeasuredDimension(DEFAULT_SIZE, heightSize);
+        } else if (heightMode == MeasureSpec.AT_MOST) {
+            setMeasuredDimension(widthSize, DEFAULT_SIZE);
+        }
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        int width = getMeasuredWidth();
-        int height = getMeasuredHeight();
-        canvas.drawCircle(width / 2, height / 2, Math.min(width, height) / 2, mPaint);
+        int paddingLeft = getPaddingLeft();
+        int paddingRight = getPaddingRight();
+        int paddingTop = getPaddingTop();
+        int paddingBottom = getPaddingBottom();
+        int width = getMeasuredWidth() - paddingLeft - paddingRight;
+        int height = getMeasuredHeight() - paddingTop - paddingBottom;
+        int radius = Math.min(width, height) / 2;
+        canvas.drawCircle(paddingLeft + width / 2, paddingTop + height / 2, radius, mPaint);
     }
 }
