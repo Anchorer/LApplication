@@ -18,31 +18,27 @@ public class MessengerService extends Service {
 
     private static final String TAG = "L";
 
-    private static class MessengerHandler extends Handler {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case 1: {
-                    Bundle data = msg.getData();
-                    Log.d(TAG, "onReceive: " + data.getString("msg"));
-                    Messenger messenger = msg.replyTo;
-                    Message replyMsg = new Message();
-                    replyMsg.what = 2;
-                    Bundle reply = new Bundle();
-                    reply.putString("reply", "稍后再给你回复！！！");
-                    replyMsg.setData(reply);
-                    try {
-                        messenger.send(replyMsg);
-                    } catch (RemoteException e) {
-                        Log.e(TAG, "Send Exception", e);
-                    }
-                    break;
+    private Messenger mMessenger = new Messenger(new Handler(msg -> {
+        switch (msg.what) {
+            case 1: {
+                Bundle data = msg.getData();
+                Log.d(TAG, "onReceive: " + data.getString("msg"));
+                Messenger messenger = msg.replyTo;
+                Message replyMsg = new Message();
+                replyMsg.what = 2;
+                Bundle reply = new Bundle();
+                reply.putString("reply", "稍后再给你回复！！！");
+                replyMsg.setData(reply);
+                try {
+                    messenger.send(replyMsg);
+                } catch (RemoteException e) {
+                    Log.e(TAG, "Send Exception", e);
                 }
+                break;
             }
         }
-    }
-
-    private Messenger mMessenger = new Messenger(new MessengerHandler());
+        return false;
+    }));
 
     @Nullable
     @Override

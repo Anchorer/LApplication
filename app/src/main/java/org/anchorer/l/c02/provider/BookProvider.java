@@ -19,8 +19,8 @@ public class BookProvider extends ContentProvider {
     private static final String PATH_BOOK = "book";
     private static final String PATH_USER = "user";
 
-    private static final Uri URI_BOOK = Uri.parse("content://" + AUTHORITY + "/" + PATH_BOOK);
-    private static final Uri URI_USER = Uri.parse("content://" + AUTHORITY + "/" + PATH_USER);
+//    private static final Uri URI_BOOK = Uri.parse("content://" + AUTHORITY + "/" + PATH_BOOK);
+//    private static final Uri URI_USER = Uri.parse("content://" + AUTHORITY + "/" + PATH_USER);
 
     private static final int CODE_BOOK_URI = 1;
     private static final int CODE_USER_URI = 2;
@@ -28,8 +28,8 @@ public class BookProvider extends ContentProvider {
     private static final UriMatcher mUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
     static {
-        mUriMatcher.addURI(AUTHORITY, "book", CODE_BOOK_URI);
-        mUriMatcher.addURI(AUTHORITY, "user", CODE_USER_URI);
+        mUriMatcher.addURI(AUTHORITY, PATH_BOOK, CODE_BOOK_URI);
+        mUriMatcher.addURI(AUTHORITY, PATH_USER, CODE_USER_URI);
     }
 
     private Context mContext;

@@ -7,7 +7,6 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
 import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -24,17 +23,14 @@ public class BookManagerActivity extends AppCompatActivity {
     private IBookManager mBookManager;
 
     private final int MSG_RECEIVE_BOOK = 1;
-    private Handler mHandler = new Handler(new Handler.Callback() {
-        @Override
-        public boolean handleMessage(Message message) {
-            switch (message.what) {
-                case MSG_RECEIVE_BOOK: {
-                    Log.d(Const.LOG, "Receive Book: " + message.obj);
-                    break;
-                }
+    private Handler mHandler = new Handler(message -> {
+        switch (message.what) {
+            case MSG_RECEIVE_BOOK: {
+                Log.d(Const.LOG, "Receive Book: " + message.obj);
+                break;
             }
-            return false;
         }
+        return false;
     });
 
     private ServiceConnection mConnection = new ServiceConnection() {

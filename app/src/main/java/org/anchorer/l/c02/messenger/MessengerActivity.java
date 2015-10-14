@@ -20,20 +20,16 @@ public class MessengerActivity extends Activity {
 
     private String TAG = "L";
 
-    private Messenger mMessenger = new Messenger(new MessengerHandler());
-
-    private class MessengerHandler extends Handler {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case 2: {
-                    Bundle data = msg.getData();
-                    Log.d(TAG, "Receiver Reply: " + data.getString("reply"));
-                    break;
-                }
+    private Messenger mMessenger = new Messenger(new Handler(msg -> {
+        switch (msg.what) {
+            case 2: {
+                Bundle data = msg.getData();
+                Log.d(TAG, "Receiver Reply: " + data.getString("reply"));
+                break;
             }
         }
-    }
+        return false;
+    }));
 
     private ServiceConnection mConnection = new ServiceConnection() {
         @Override

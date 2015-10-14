@@ -1,11 +1,10 @@
 package org.anchorer.l.c01;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import l.anchorer.org.lapplication.R;
 
@@ -15,12 +14,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        findViewById(R.id.main_textview).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, SecondActivity.class));
-            }
-        });
+        findViewById(R.id.main_textview).setOnClickListener(view -> startActivity(new Intent(MainActivity.this, SecondActivity.class)));
 
 //        CustomView mView = (CustomView) findViewById(R.id.main_custom);
 //        new Thread(mView).start();
