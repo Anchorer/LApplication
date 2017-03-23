@@ -1,1 +1,2 @@
-include ':app'
+include ':app', ':lib_anchorer'
+project(':lib_anchorer').projectDir = new File('Lib_Anchorer_Android/lib_anchorer')
